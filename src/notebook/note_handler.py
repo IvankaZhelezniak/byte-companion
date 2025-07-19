@@ -70,11 +70,11 @@ def show_notes_help():
     print(Fore.CYAN + "Available commands:" + Style.RESET_ALL)
     commands = (
         Fore.GREEN +
-        "  add-note     - add a note with tags\n"
-        "  show-notes   - show all notes\n"
-        "  find-note    - find notes by keyword\n"
-        "  edit-note    - edit note by index\n"
-        "  delete-note  - delete note by index\n"
+        "  add          - add a note with tags\n"
+        "  all          - show all notes\n"
+        "  find         - find notes by keyword\n"
+        "  edit         - edit note by index\n"
+        "  delete       - delete note by index\n"
         "  help         - show this help message\n"
         "  back         - return to main menu" +
         Style.RESET_ALL
