@@ -1,5 +1,5 @@
 from colorama import init, Fore, Style
-from difflib import get_close_matches  # ✅ Для інтелектуального аналізу команд
+from difflib import get_close_matches                # ✅ Для інтелектуального аналізу команд
 from data.storage import load_data, save_data
 from address_book import (
     add_contact, edit_contact, delete_contact,
@@ -18,14 +18,23 @@ from notebook import (
 # Ініціалізація colorama для коректного відображення кольорів у Windows
 init(autoreset=True)
 
+# ✅ Функція для підказки команди, якщо користувач зробив помилку у введенні
 def suggest_command(user_input, commands):
+    # Порівнює введену команду з допустимими
+    # Повертає список схожих команд (найбільше 1 результат), які мають схожість ≥ 0.5
     matches = get_close_matches(user_input, commands, n=1, cutoff=0.5)
+
+    # Якщо знайшлися схожі команди — повертаємо першу
     if matches:
         return matches[0]
-    return None
+    return None                  # Інакше повертаємо None (нічого не пропонувати)
 
+
+# ✅ Функція реалізує режим роботи з контактами (address book)
 def contacts_mode(book, notes):
+    # Виводимо повідомлення про вхід у режим контактів
     print(Fore.YELLOW + "\n📒 Entering contacts mode " + Style.DIM + "(type 'help' for available commands)")
+    # Список всіх допустимих команд у цьому режимі
     valid_commands = ['add', 'edit', 'delete', 'search', 'all', 'birthdays', 'help', 'back']
     while True:
         user_input = input(Fore.CYAN + "Enter command: ").strip().lower()
@@ -69,9 +78,9 @@ def notes_mode(book, notes):
             edit_note(notes)
         elif user_input == "delete":
             delete_note(notes)
-        elif user_input == "list":
+        elif user_input == "all":
             show_notes(notes)
-        elif user_input == "search":
+        elif user_input == "find":
             search_notes(notes)
         elif user_input == "help":
             show_notes_help()
